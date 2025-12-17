@@ -1,0 +1,56 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="horizontal"
+    android:paddingVertical="26dp"
+    android:paddingHorizontal="14dp"
+    android:layout_marginBottom="10dp"
+    android:background="@drawable/bg_item_language"
+    android:gravity="center_vertical"
+    android:clickable="true"
+    android:focusable="true">
+
+    <ImageView
+        android:id="@+id/img_flag"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:layout_marginEnd="18dp"
+        android:scaleType="fitXY"
+        android:src="@drawable/ic_flag_en"
+        android:contentDescription="@null"/>
+
+    <TextView
+        android:id="@+id/tv_language_name_unselected"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:textSize="@dimen/_18sdp"
+        android:text="@string/english"
+      android:textColor="@color/black"
+        android:letterSpacing="0.03"
+        />
+
+
+    <TextView
+        android:id="@+id/tv_language_name_selected"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:textSize="@dimen/_18sdp"
+        android:text="@string/english"
+        android:textColor="@color/white"
+        android:letterSpacing="0.03"
+        android:visibility="gone"
+        />
+
+    <ImageButton
+        android:id="@+id/radio_button"
+        android:layout_width="@dimen/_19sdp"
+        android:layout_height="@dimen/_19sdp"
+        android:scaleType="fitXY"
+        android:background="@null"
+        android:contentDescription="@null"
+        android:src="@drawable/ic_radio_button_unchecked"/>
+
+</LinearLayout>

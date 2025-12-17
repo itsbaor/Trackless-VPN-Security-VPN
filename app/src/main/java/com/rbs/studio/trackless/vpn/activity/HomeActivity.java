@@ -109,12 +109,14 @@ public class HomeActivity extends UIActivity implements VpnStateListener, Traffi
 
         //setBannerAdd(binding.adMobView);
 
-        loadInterAd();
+        // Ads disabled
+        // loadInterAd();
 
         loginToVpn();
         unlockdata();
 
-        setSmallNativeAdd();
+        // Ads disabled
+        // setSmallNativeAdd();
 
         if (sessionManager.getBooleanValue(Const.switchConnectWhenAppStart) && !sessionManager.getBooleanValue(Const.FirstTimeConnected)) {
             Log.d(TAG, "onCreate: connecting");
@@ -211,7 +213,8 @@ public class HomeActivity extends UIActivity implements VpnStateListener, Traffi
             public void complete() {
 //                stopService(intent);
 
-                showInterAd();
+                // Ads disabled
+                // showInterAd();
 
                 resetTimer();
                 binding.homePowerBt.setImageResource(R.drawable.home_power_button);
@@ -357,17 +360,51 @@ public class HomeActivity extends UIActivity implements VpnStateListener, Traffi
                         public void complete() {
                             startTimer();
                             binding.fetchingDetailsLayout.setVisibility(View.VISIBLE);
-                            Handler handler = new Handler();
-                            handler.postDelayed(new Runnable() {
+
+                            // Get session info and location before starting activity
+                            UnifiedSdk.getStatus(new Callback<SessionInfo>() {
                                 @Override
-                                public void run() {
-                                    startActivity(new Intent(HomeActivity.this, ConnectedStatisticActivity.class)
-                                            .putExtra("IP_ADRESSS", ServerIPaddress)
-                                            .putExtra("CONNECTION", "connected")
-                                            .putExtra("LOCATION", country_location));
-                                    binding.fetchingDetailsLayout.setVisibility(View.GONE);
+                                public void success(@NonNull SessionInfo sessionInfo) {
+                                    ServerIPaddress = sessionInfo.getCredentials().getServers().get(0).getAddress();
+
+                                    // Set country location
+                                    if (!selectedCountry.equals("")) {
+                                        Locale locale = new Locale("", selectedCountry);
+                                        country_location = locale.getDisplayCountry();
+                                    } else {
+                                        country_location = "Smart Location";
+                                    }
+
+                                    Handler handler = new Handler();
+                                    handler.postDelayed(new Runnable() {
+                                        @Override
+                                        public void run() {
+                                            startActivity(new Intent(HomeActivity.this, ConnectedStatisticActivity.class)
+                                                    .putExtra("IP_ADRESSS", ServerIPaddress)
+                                                    .putExtra("CONNECTION", "connected")
+                                                    .putExtra("LOCATION", country_location));
+                                            binding.fetchingDetailsLayout.setVisibility(View.GONE);
+                                        }
+                                    }, 1500);
                                 }
-                            }, 1500);
+
+                                @Override
+                                public void failure(@NonNull VpnException e) {
+                                    // Fallback if session info fetch fails
+                                    Handler handler = new Handler();
+                                    handler.postDelayed(new Runnable() {
+                                        @Override
+                                        public void run() {
+                                            startActivity(new Intent(HomeActivity.this, ConnectedStatisticActivity.class)
+                                                    .putExtra("IP_ADRESSS", ServerIPaddress)
+                                                    .putExtra("CONNECTION", "connected")
+                                                    .putExtra("LOCATION", selectedCountry.isEmpty() ? "Smart Location" : selectedCountry));
+                                            binding.fetchingDetailsLayout.setVisibility(View.GONE);
+                                        }
+                                    }, 1500);
+                                }
+                            });
+
                             binding.homePowerBt.setImageResource(R.drawable.connected_home_power_button);
                             binding.tapToConnect.setText(R.string.connected);
                             binding.lottiDot.setVisibility(View.GONE);
@@ -479,21 +516,20 @@ public class HomeActivity extends UIActivity implements VpnStateListener, Traffi
                     Log.d(TAG, "success:    chooseServer ");
                     startActivityForResult(new Intent(HomeActivity.this, LocationActivity.class), 3000);
                 } else {
-                    Log.d(TAG, "success:    login");
-                    showMessage("Login please");
+                    Log.d(TAG, "success:    auto login for location selection");
                     Log.e(TAG, "loginToVpn: ");
                     AuthMethod authMethod = AuthMethod.anonymous();
                     UnifiedSdk.getInstance().getBackend().login(authMethod, new Callback<User>() {
                         @Override
                         public void success(@NonNull User user) {
                             updateUI();
-                            Log.d(TAG, "success:    login succesed");
-
+                            Log.d(TAG, "success:    login succeeded, opening location");
+                            startActivityForResult(new Intent(HomeActivity.this, LocationActivity.class), 3000);
                         }
 
                         @Override
                         public void failure(@NonNull VpnException e) {
-                            Log.d(TAG, "failure:    login faild" + e);
+                            Log.d(TAG, "failure:    login failed" + e);
                             updateUI();
                             handleError(e);
                         }

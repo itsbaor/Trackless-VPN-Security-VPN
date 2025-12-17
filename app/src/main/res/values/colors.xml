@@ -17,6 +17,9 @@
     <color name="transferent">#00000000</color>
     <color name="gre">#A0A0A0</color>
     <color name="purple">#457eff</color>
+    <color name="colorPrimary">#457eff</color>
+    <color name="colorPrimaryDark">#ffffff</color>
+
 
 
     <color name="splash_theme">#BCE2F6</color>

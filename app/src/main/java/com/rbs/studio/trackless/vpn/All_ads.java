@@ -28,8 +28,9 @@ public class All_ads {
     private InterstitialAd interstitialAd1;
     public All_ads(Context context) {
         this.context = context;
-        MobileAds.initialize(context, initializationStatus -> {
-        });
+        // Ads disabled
+        // MobileAds.initialize(context, initializationStatus -> {
+        // });
     }
 
 
@@ -78,7 +79,8 @@ public class All_ads {
 
 
     public void loadNativeAd(TemplateView template) {
-        MobileAds.initialize(context);
+        // Ads disabled
+        // MobileAds.initialize(context);
         AdLoader adLoader = new AdLoader.Builder(context, context.getString(R.string.native_advanced_ad_keys))
                 .forNativeAd(nativeAd -> {
                     ColorDrawable colorDrawable = new ColorDrawable(ContextCompat.getColor(context, R.color.white));

@@ -39,8 +39,9 @@ public class LocationActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         binding = DataBindingUtil.setContentView(this, R.layout.activity_location);
         //setSmallNativeAdd();
-        SmallBannerAd(binding.adMobView);
-        loadRewardedAd();
+        // Ads disabled
+        // SmallBannerAd(binding.adMobView);
+        // loadRewardedAd();
         regionChooserInterface = new RegionChooserInterface() {
             @Override
             public void onRegionSelected(CountryData item) {

@@ -54,8 +54,9 @@ public class BaseActivity extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        adRequest = new AdRequest.Builder().build();
-        adView = new AdView(this);
+        // Ads disabled
+        // adRequest = new AdRequest.Builder().build();
+        // adView = new AdView(this);
         sessionManager = new SessionManager(this);
 
     }

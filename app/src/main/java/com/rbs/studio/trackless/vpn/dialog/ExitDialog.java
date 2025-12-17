@@ -57,7 +57,8 @@ public class ExitDialog extends Dialog {
 
 
 
-          adsHelper.loadNativeAd(templateView);
+          // Ads disabled
+          // adsHelper.loadNativeAd(templateView);
     }
 
     private void rateApp() {

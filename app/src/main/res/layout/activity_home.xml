@@ -60,7 +60,7 @@
                         android:layout_marginStart="100dp"
                         android:fontFamily="@font/baloo"
                         android:gravity="center"
-                        android:text="@string/app_name"
+                        android:text="VPNbullet"
                         android:textColor="@color/white"
                         android:textSize="30sp" />
 
@@ -486,6 +486,7 @@
                     android:layout_below="@+id/p_layout"
                     android:gravity="center"
                     android:layout_marginTop="10dp"
+
                     android:orientation="horizontal">
 
                     <ImageView
@@ -496,17 +497,17 @@
                         android:src="@drawable/home_hand_pointing"
                         android:visibility="gone" />
 
+
                     <com.airbnb.lottie.LottieAnimationView
                         android:id="@+id/lotti_hand_click_bt"
-                        android:layout_width="23dp"
-                        android:layout_height="23dp"
+                        android:layout_width="70dp"
+                        android:layout_height="70dp"
                         android:layout_gravity="center"
                         android:visibility="visible"
                         app:lottie_autoPlay="true"
                         app:lottie_loop="true"
-                        app:lottie_rawRes="@raw/hand_click"
+                        app:lottie_rawRes="@raw/hand_click_cn"
                         tools:ignore="ImageContrastCheck" />
-
 
                     <TextView
                         android:id="@+id/tap_to_connect"
@@ -519,7 +520,7 @@
                         android:layout_gravity="center"
                         android:text="@string/tap_to_connect"
                         android:textColor="@color/purple"
-                        android:textSize="14sp" />
+                        android:textSize="18sp" />
 
 
                 </LinearLayout>
@@ -530,7 +531,7 @@
                     android:id="@+id/fl_native"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:visibility="visible"
+                    android:visibility="gone"
                     android:layout_alignParentBottom="true"
                     />
 

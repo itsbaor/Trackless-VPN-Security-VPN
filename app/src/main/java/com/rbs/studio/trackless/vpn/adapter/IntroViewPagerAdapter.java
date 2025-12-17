@@ -136,13 +136,14 @@ public class IntroViewPagerAdapter extends PagerAdapter {
         AdRequest adRequest ;
         adRequest = new AdRequest.Builder().build();
         adView = new AdView(mContext);
-        MobileAds.initialize(mContext, new OnInitializationCompleteListener() {
-            @Override
-            public void onInitializationComplete(InitializationStatus initializationStatus) {
-
-
-            }
-        });
+        // Ads disabled
+        // MobileAds.initialize(mContext, new OnInitializationCompleteListener() {
+        //     @Override
+        //     public void onInitializationComplete(InitializationStatus initializationStatus) {
+        //
+        //
+        //     }
+        // });
         SessionManager sessionManager = new SessionManager(mContext);
         if(sessionManager.getBooleanValue(Const.Adshow)) {
             AdLoader adLoader = new AdLoader.Builder(mContext, sessionManager.getStringValue(Const.nativeAdId))

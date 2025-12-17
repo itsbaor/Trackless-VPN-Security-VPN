@@ -46,9 +46,9 @@ public class MainApp extends Application {
         Log.d("MAIN_APP", "onCreate:    notification" + country_location);
         sessionManager = new SessionManager(this);
 
-        MobileAds.initialize(this);
-
-        new AppOpenManager(this, getResources().getString(R.string.open_app_adds_keys));
+        // Ads disabled
+        // MobileAds.initialize(this);
+        // new AppOpenManager(this, getResources().getString(R.string.open_app_adds_keys));
 
 
 //        OneSignal.startInit(this)

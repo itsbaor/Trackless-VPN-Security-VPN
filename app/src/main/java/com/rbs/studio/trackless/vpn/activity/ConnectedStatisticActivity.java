@@ -118,14 +118,15 @@ public class ConnectedStatisticActivity extends BaseActivity {
         if (Objects.equals(intent.getStringExtra("CONNECTION"), "connected")) {
 
             Log.d("CONNECTION_STAUS", "onCreate: when connected ");
+            Log.d("CONNECTION_STAUS", "Location Name: " + location);
 //        registerReceiver(broadcastReceiver, new IntentFilter(TimerService.BROADCAST_ACTION));
             startService(new Intent(ConnectedStatisticActivity.this, TimerService.class));
             binding.mainTitle.setText("Connection succeed");
             //loadInterstitialAds();
-        } else if (!Objects.equals(intent.getStringExtra("CONNECTION"), "disConnected")) {
+        } else if (Objects.equals(intent.getStringExtra("CONNECTION"), "disConnected")) {
             //loadInterstitialAds();
-            Log.d("CONNECTION_STAUS", "onCreate: whebn disconnected");
-            binding.mainTitle.setText("Connection Report");
+            Log.d("CONNECTION_STAUS", "onCreate: when disconnected");
+            binding.mainTitle.setText("Disconnection Protocol");
             new Handler().postDelayed(new Runnable() {
                 @Override
                 public void run() {
@@ -144,7 +145,8 @@ public class ConnectedStatisticActivity extends BaseActivity {
 
         binding.backIcon.setOnClickListener(view -> onBackPressed());
 
-        setBigNativeAdd();
+        // Ads disabled
+        // setBigNativeAdd();
     }
 
     @Override

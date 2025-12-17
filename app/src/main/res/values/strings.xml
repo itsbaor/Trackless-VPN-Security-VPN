@@ -1,6 +1,5 @@
 <resources>
-    <string name="app_name">Trackless VPN</string>
-
+    <string name="app_name">VPNbullet: Fast &amp; Stable VPN</string>
     <!--    Main Id's-->
 
 <!--    <string name="app_id">ca-app-pub-3940256099942544~3347511713</string>-->
@@ -8,7 +7,13 @@
 <!--    <string name="interstial_adds_keys">ca-app-pub-3940256099942544/1033173712</string>-->
 <!--    <string name="native_advanced_ad_keys">ca-app-pub-4660381108030921/5858184572</string>-->
 <!--    <string name="open_app_adds_keys">ca-app-pub-4660381108030921/2465734474</string>-->
-
+    <string name="english">English</string>
+    <string name="hindi">Hindi</string>
+    <string name="spanish">Spanish</string>
+    <string name="portuguese">Portuguese</string>
+    <string name="indonesia">Indonesia</string>
+    <string name="korean">Korean</string>
+    <string name="language">Language</string>
 
     <!--    Test Ads-->
         <string name="app_id">ca-app-pub-3940256099942544~3347511713</string>

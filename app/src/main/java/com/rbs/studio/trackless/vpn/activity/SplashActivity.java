@@ -108,7 +108,7 @@ public class SplashActivity extends AppCompatActivity {
 //                        sessionManager.saveStringValue(Const.openAdId,mFirebaseRemoteConfig.getString(Const.openAdId));
 
 //                        for test
-                        sessionManager.saveBooleanValue(Const.Adshow, true);
+                        sessionManager.saveBooleanValue(Const.Adshow, false);
                         sessionManager.saveStringValue(Const.interstitialAdId, getResources().getString(R.string.interstial_adds_keys));
                         sessionManager.saveStringValue(Const.nativeAdId, getResources().getString(R.string.native_advanced_ad_keys));
                         sessionManager.saveStringValue(Const.bannerAdId, getResources().getString(R.string.banner_adds_key));
@@ -307,16 +307,17 @@ public class SplashActivity extends AppCompatActivity {
 
     private void gotoNext(final boolean value) {
 
-        loadInterstitial(value);
-        if (NetworkStateUtility.isOnline(this)) {
-            if (!adFlag)
-                showInterstitial();
-        }
+        // Ads disabled
+        // loadInterstitial(value);
+        // if (NetworkStateUtility.isOnline(this)) {
+        //     if (!adFlag)
+        //         showInterstitial();
+        // }
 
         new Handler(Looper.getMainLooper()).postDelayed(() -> {
-            if (!isAdLoaded) {
+            // if (!isAdLoaded) {
                 gotoNextActivity(value);
-            }
+            // }
         }, TIME_OUT);
     }
 

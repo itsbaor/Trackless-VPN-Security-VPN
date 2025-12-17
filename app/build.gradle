@@ -12,7 +12,7 @@ android {
     compileSdk 34
     namespace 'com.rbs.studio.trackless.vpn'
     defaultConfig {
-        applicationId "com.rbs.studio.trackless.vpn"
+        applicationId "ultra.vpn.ipchanger.unblock.free.proxy"
         minSdk 22
         targetSdk 34
         versionCode 22
@@ -96,6 +96,7 @@ dependencies {
     implementation 'com.github.AnchorFreePartner.hydra-sdk-android:sdk-core:4.5.0'
     implementation 'com.github.AnchorFreePartner.hydra-sdk-android:hydra:4.5.0'
     implementation 'com.github.AnchorFreePartner.hydra-sdk-android:openvpn:4.5.0'
+    implementation 'com.intuit.sdp:sdp-android:1.1.1'
 
     implementation 'androidx.multidex:multidex:2.0.1'
 
