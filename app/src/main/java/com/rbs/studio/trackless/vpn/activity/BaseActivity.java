@@ -1,6 +1,7 @@
 package com.rbs.studio.trackless.vpn.activity;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
@@ -38,6 +39,7 @@ import com.google.android.gms.ads.rewarded.RewardedAd;
 import com.google.android.gms.ads.rewarded.RewardedAdLoadCallback;
 import com.rbs.studio.trackless.vpn.R;
 import com.rbs.studio.trackless.vpn.utils.Const;
+import com.rbs.studio.trackless.vpn.utils.LocaleHelper;
 import com.rbs.studio.trackless.vpn.utils.SessionManager;
 
 
@@ -50,6 +52,11 @@ public class BaseActivity extends AppCompatActivity {
     protected String TAG = "baseActivity";
     SessionManager sessionManager;
 
+
+    @Override
+    protected void attachBaseContext(Context newBase) {
+        super.attachBaseContext(LocaleHelper.INSTANCE.wrapContext(newBase));
+    }
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {

@@ -1,5 +1,6 @@
 package com.rbs.studio.trackless.vpn.activity
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
@@ -11,12 +12,17 @@ import androidx.recyclerview.widget.RecyclerView
 import com.orhanobut.hawk.Hawk
 import com.rbs.studio.trackless.vpn.adapter.LanguageAdapter
 import com.rbs.studio.trackless.vpn.databinding.ActivityLanguageDupBinding
+import com.rbs.studio.trackless.vpn.utils.LocaleHelper
 import com.rbs.studio.trackless.vpn.utils.getLanguages
 import com.rbs.studio.trackless.vpn.utils.saveLanguage
 
 class LanguageDupActivity : AppCompatActivity() {
     private lateinit var binding: ActivityLanguageDupBinding
     private lateinit var languageAdapter : LanguageAdapter
+
+    override fun attachBaseContext(newBase: Context) {
+        super.attachBaseContext(LocaleHelper.wrapContext(newBase))
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

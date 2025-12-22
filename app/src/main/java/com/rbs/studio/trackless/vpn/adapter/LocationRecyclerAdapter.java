@@ -16,6 +16,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.rbs.studio.trackless.vpn.BuildConfig;
 import com.rbs.studio.trackless.vpn.R;
 import com.rbs.studio.trackless.vpn.databinding.RowLocationsBinding;
+import com.orhanobut.hawk.Hawk;
 import com.rbs.studio.trackless.vpn.dialog.CountryData;
 import com.rbs.studio.trackless.vpn.utils.Preference;
 import com.rbs.studio.trackless.vpn.utils.BillConfig;
@@ -49,7 +50,11 @@ public class LocationRecyclerAdapter extends RecyclerView.Adapter<LocationRecycl
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         final CountryData datanew = this.regions.get(holder.getAdapterPosition());
         final Country data = datanew.getCountryvalue();
-        Locale locale = new Locale("", data.getCountry());
+
+        // Get app-selected language from Hawk
+        String appLanguage = Hawk.get("language_code", "en");
+        Locale appLocale = new Locale(appLanguage);
+        Locale countryLocale = new Locale("", data.getCountry());
 
         if (position == 0) {
             holder.binding.flag.setImageResource(context.getResources().getIdentifier("drawable/earthspeed", null, context.getPackageName()));
@@ -60,8 +65,11 @@ public class LocationRecyclerAdapter extends RecyclerView.Adapter<LocationRecycl
             Resources resources = context.getResources();
             String sb = "drawable/" + data.getCountry().toLowerCase();
             imageView.setImageResource(resources.getIdentifier(sb, null, context.getPackageName()));
-            holder.binding.countryTitle.setText(locale.getDisplayCountry());
-            Log.d("ADAPTER_LOCATION", "onBindViewHolder:    " + locale.getDisplayCountry());
+
+            // Get country name in app-selected language
+            String countryName = countryLocale.getDisplayCountry(appLocale);
+            holder.binding.countryTitle.setText(countryName);
+            Log.d("ADAPTER_LOCATION", "onBindViewHolder:    " + countryName);
 //            holder.limit.setVisibility(View.VISIBLE);
         }
 

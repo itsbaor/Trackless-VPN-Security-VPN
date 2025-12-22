@@ -1,5 +1,6 @@
 package com.rbs.studio.trackless.vpn.activity
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
@@ -11,12 +12,17 @@ import androidx.recyclerview.widget.RecyclerView
 import com.orhanobut.hawk.Hawk
 import com.rbs.studio.trackless.vpn.adapter.LanguageAdapter
 import com.rbs.studio.trackless.vpn.databinding.ActivityLanguageSettingBinding
+import com.rbs.studio.trackless.vpn.utils.LocaleHelper
 import com.rbs.studio.trackless.vpn.utils.getLanguages
 import com.rbs.studio.trackless.vpn.utils.saveLanguage
 
 class LanguageSettingActivity : AppCompatActivity() {
     private lateinit var binding: ActivityLanguageSettingBinding
     private lateinit var languageAdapter : LanguageAdapter
+
+    override fun attachBaseContext(newBase: Context) {
+        super.attachBaseContext(LocaleHelper.wrapContext(newBase))
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -55,6 +61,11 @@ class LanguageSettingActivity : AppCompatActivity() {
             val selectedLanguage = languages.firstOrNull { it.isSelected }
             saveLanguage(selectedLanguage ?: languages[0])
             Hawk.put(LanguageActivity::class.java.simpleName, true)
+
+            // Restart app to apply language change immediately
+            val intent = Intent(this, HomeActivity::class.java)
+            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+            startActivity(intent)
             finish()
         }
     }

@@ -29,6 +29,7 @@ import androidx.databinding.DataBindingUtil;
 
 import com.google.android.ads.nativetemplates.TemplateView;
 import com.google.gson.Gson;
+import com.orhanobut.hawk.Hawk;
 import com.rbs.studio.trackless.vpn.BuildConfig;
 import com.rbs.studio.trackless.vpn.R;
 import com.rbs.studio.trackless.vpn.databinding.ActivityHomeBinding;
@@ -390,8 +391,12 @@ public class HomeActivity extends UIActivity implements VpnStateListener, Traffi
                                     // Set country location display name
                                     if (countryCode != null && !countryCode.equals("")) {
                                         SeclectedCountry = countryCode;
-                                        Locale locale = new Locale("", countryCode);
-                                        country_location = locale.getDisplayCountry();
+
+                                        // Get app-selected language from Hawk
+                                        String appLanguage = Hawk.get("language_code", "en");
+                                        Locale appLocale = new Locale(appLanguage);
+                                        Locale countryLocale = new Locale("", countryCode);
+                                        country_location = countryLocale.getDisplayCountry(appLocale);
 
                                         // Set flag
                                         Resources resources = getResources();
@@ -791,10 +796,14 @@ public class HomeActivity extends UIActivity implements VpnStateListener, Traffi
             public void success(@NonNull final String currentServer) {
                 runOnUiThread(() -> {
                     if (!currentServer.equals("") && SeclectedCountry != null && !SeclectedCountry.isEmpty()) {
-                        Locale locale = new Locale("", SeclectedCountry);
+                        // Get app-selected language from Hawk
+                        String appLanguage = Hawk.get("language_code", "en");
+                        Locale appLocale = new Locale(appLanguage);
+                        Locale countryLocale = new Locale("", SeclectedCountry);
+                        country_location = countryLocale.getDisplayCountry(appLocale);
+
                         Resources resources = getResources();
                         String sb = "drawable/" + SeclectedCountry.toLowerCase();
-                        country_location = locale.getDisplayCountry();
                         flag_image = resources.getIdentifier(sb, "drawable", getPackageName());
 
                         // Set flag if resource exists, otherwise use default

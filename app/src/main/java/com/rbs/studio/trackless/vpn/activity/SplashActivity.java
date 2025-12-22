@@ -38,6 +38,7 @@ import com.rbs.studio.trackless.vpn.BuildConfig;
 import com.rbs.studio.trackless.vpn.R;
 import com.rbs.studio.trackless.vpn.databinding.ActivitySplashBinding;
 import com.rbs.studio.trackless.vpn.utils.Const;
+import com.rbs.studio.trackless.vpn.utils.LocaleHelper;
 import com.rbs.studio.trackless.vpn.utils.NetworkStateUtility;
 import com.rbs.studio.trackless.vpn.utils.Preference;
 import com.rbs.studio.trackless.vpn.utils.SessionManager;
@@ -65,6 +66,12 @@ public class SplashActivity extends AppCompatActivity {
     boolean isAdLoaded = false;
     boolean adFlag = false;
     private InterstitialAd interstitialAd1;
+
+    @Override
+    protected void attachBaseContext(Context newBase) {
+        super.attachBaseContext(LocaleHelper.INSTANCE.wrapContext(newBase));
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
