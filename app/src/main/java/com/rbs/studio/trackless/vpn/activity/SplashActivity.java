@@ -118,12 +118,10 @@ public class SplashActivity extends AppCompatActivity {
 
                         sessionManager.saveStringValue(Const.rate_us, mFirebaseRemoteConfig.getString(Const.rate_us));
                         sessionManager.saveStringValue(Const.privacy_policy, mFirebaseRemoteConfig.getString(Const.privacy_policy));
-                        sessionManager.saveStringValue(Const.term_of_service, mFirebaseRemoteConfig.getString(Const.term_of_service));
 
 
                         Log.d(TAG, "onCreate: isAdShow " + sessionManager.getBooleanValue(Const.Adshow));
                         Log.d(TAG, "onCreate: privacy_policy " + sessionManager.getStringValue(Const.privacy_policy));
-                        Log.d(TAG, "onCreate: tearm_service " + sessionManager.getStringValue(Const.term_of_service));
                         Log.d(TAG, "onCreate: interstitial_ad_key" + sessionManager.getStringValue(Const.interstitialAdId));
                         Log.d(TAG, "onCreate: native_ad_key " + sessionManager.getStringValue(Const.nativeAdId));
                         Log.d(TAG, "onCreate: banner_key " + sessionManager.getStringValue(Const.bannerAdId));
@@ -148,6 +146,7 @@ public class SplashActivity extends AppCompatActivity {
                 .addUrl(BuildConfig.BASE_HOST)
                 .carrierId(BuildConfig.BASE_CARRIER_ID)
                 .build();
+
         List<TransportConfig> transportConfigList = new ArrayList<>();
         transportConfigList.add(HydraTransportConfig.create());
         transportConfigList.add(OpenVpnTransportConfig.tcp());
@@ -297,7 +296,7 @@ public class SplashActivity extends AppCompatActivity {
                 startActivity(new Intent(SplashActivity.this, HomeActivity.class));
                 finish();
             } else {
-                startActivity(new Intent(SplashActivity.this, FirstBoardingActivity.class));
+                startActivity(new Intent(SplashActivity.this, LanguageDupActivity.class));
                 finish();
             }
         }, 100);

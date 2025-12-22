@@ -30,13 +30,26 @@
         android:theme="@style/Theme.VPNite"
         android:usesCleartextTraffic="true"
         tools:ignore="GoogleAppIndexingWarning"
-        tools:targetApi="31">
+        tools:targetApi="33"
+        tools:replace="android:allowBackup,android:supportsRtl">
         <activity
             android:name=".activity.ConnectedStatisticActivity"
             android:screenOrientation="portrait"
             android:exported="false" />
         <activity
             android:name=".activity.SettingActivity"
+            android:exported="true"
+            android:hardwareAccelerated="true" />
+        <activity
+            android:name=".activity.LanguageActivity"
+            android:exported="true"
+            android:hardwareAccelerated="true" />
+        <activity
+            android:name=".activity.LanguageSettingActivity"
+            android:exported="true"
+            android:hardwareAccelerated="true" />
+        <activity
+            android:name=".activity.LanguageDupActivity"
             android:exported="true"
             android:hardwareAccelerated="true" />
         <activity

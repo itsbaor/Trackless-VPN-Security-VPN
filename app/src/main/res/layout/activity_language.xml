@@ -48,7 +48,7 @@
             android:layout_marginRight="@dimen/_30sdp"
             app:lottie_autoPlay="true"
             app:lottie_loop="true"
-            app:lottie_rawRes="@raw/hand_click" />
+            app:lottie_rawRes="@raw/hand_click_cn" />
     </FrameLayout>
 
     <FrameLayout

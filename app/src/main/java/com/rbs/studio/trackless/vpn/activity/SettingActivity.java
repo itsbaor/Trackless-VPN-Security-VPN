@@ -65,6 +65,9 @@ public class SettingActivity extends BaseActivity {
             boolean switchShowNotification_isChecked = binding.switchShowNotification.isChecked();
             sessionManager.saveBooleanValue(Const.switchShowNotification, switchShowNotification_isChecked);
         });
+        binding.language.setOnClickListener(view -> {
+            startActivity(new Intent(SettingActivity.this, LanguageSettingActivity.class));
+        });
         binding.privacyPolicy.setOnClickListener(view -> {
             binding.privacyPolicy.setEnabled(false);
             CustomTabsIntent.Builder customIntent = new CustomTabsIntent.Builder();
@@ -75,22 +78,13 @@ public class SettingActivity extends BaseActivity {
 
             // we are calling below method after
             // setting our toolbar color.
-            Log.d(TAG, "onClick: privacy_URL   " + sessionManager.getStringValue(Const.privacy_policy));
+            String privacyUrl = sessionManager.getStringValue(Const.privacy_policy);
+            if (privacyUrl == null || privacyUrl.isEmpty()) {
+                privacyUrl = Const.privacy_policy;
+            }
+            Log.d(TAG, "onClick: privacy_URL   " + privacyUrl);
 
-            openCustomTab(SettingActivity.this, customIntent.build(), Uri.parse(sessionManager.getStringValue(Const.privacy_policy)));
-        });
-
-        binding.termOfService.setOnClickListener(view -> {
-            binding.termOfService.setEnabled(false);
-            CustomTabsIntent.Builder customIntent = new CustomTabsIntent.Builder();
-
-            // below line is setting toolbar color
-            // for our custom chrome tab.
-            customIntent.setToolbarColor(ContextCompat.getColor(SettingActivity.this, R.color.main_bg));
-
-            // we are calling below method after
-            // setting our toolbar color.
-            openCustomTab(SettingActivity.this, customIntent.build(), Uri.parse(sessionManager.getStringValue(Const.term_of_service)));
+            openCustomTab(SettingActivity.this, customIntent.build(), Uri.parse(privacyUrl));
         });
 
         binding.RateUs.setOnClickListener(v -> {
@@ -153,7 +147,6 @@ public class SettingActivity extends BaseActivity {
     protected void onResume() {
         super.onResume();
         Log.d(TAG, "onResume: ");
-        binding.termOfService.setEnabled(true);
         binding.privacyPolicy.setEnabled(true);
     }
  /*   public  void  setNativeAdd(){

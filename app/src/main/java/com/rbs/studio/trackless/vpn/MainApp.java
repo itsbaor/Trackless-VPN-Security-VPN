@@ -13,6 +13,7 @@ import androidx.multidex.MultiDexApplication;
 
 //import com.anchorfree.sdk.UnifiedSDK;
 import com.google.android.gms.ads.MobileAds;
+import com.orhanobut.hawk.Hawk;
 import com.rbs.studio.trackless.vpn.utils.SessionManager;
 
 import papaya.in.admobopenads.AppOpenManager;
@@ -45,6 +46,7 @@ public class MainApp extends Application {
 
         Log.d("MAIN_APP", "onCreate:    notification" + country_location);
         sessionManager = new SessionManager(this);
+        Hawk.init(this).build();
 
         // Ads disabled
         // MobileAds.initialize(this);

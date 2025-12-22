@@ -26,7 +26,6 @@ public class Const {
 
     public static String openAdId = "openAdId";
     public static String rewordAdId = "rewordAdId";
-    public static String privacy_policy = "privacy_policy";
-    public static String term_of_service = "term_of_service";
+    public static String privacy_policy = "https://sites.google.com/view/vpnbullet-fast-stablevpn/home";
     public static String rate_us = "rate_us";
 }

@@ -112,6 +112,9 @@ public class HomeActivity extends UIActivity implements VpnStateListener, Traffi
         // Ads disabled
         // loadInterAd();
 
+        // Initialize VPN SDK before using it
+        initHydraSdk();
+
         loginToVpn();
         unlockdata();
 
@@ -367,10 +370,32 @@ public class HomeActivity extends UIActivity implements VpnStateListener, Traffi
                                 public void success(@NonNull SessionInfo sessionInfo) {
                                     ServerIPaddress = sessionInfo.getCredentials().getServers().get(0).getAddress();
 
-                                    // Set country location
-                                    if (!selectedCountry.equals("")) {
-                                        Locale locale = new Locale("", selectedCountry);
+                                    // Get country code from selected country or try to extract from session
+                                    String countryCode = selectedCountry;
+
+                                    // Try to get country from server location if available
+                                    try {
+                                        if (sessionInfo.getCredentials() != null &&
+                                            sessionInfo.getCredentials().getServers() != null &&
+                                            !sessionInfo.getCredentials().getServers().isEmpty()) {
+                                            String serverCountry = sessionInfo.getCredentials().getServers().get(0).getCountry();
+                                            if (serverCountry != null && !serverCountry.isEmpty()) {
+                                                countryCode = serverCountry;
+                                            }
+                                        }
+                                    } catch (Exception e) {
+                                        Log.d(TAG, "Could not get country from server: " + e.getMessage());
+                                    }
+
+                                    // Set country location display name
+                                    if (countryCode != null && !countryCode.equals("")) {
+                                        SeclectedCountry = countryCode;
+                                        Locale locale = new Locale("", countryCode);
                                         country_location = locale.getDisplayCountry();
+
+                                        // Set flag
+                                        Resources resources = getResources();
+                                        flag_image = resources.getIdentifier("drawable/" + countryCode.toLowerCase(), "drawable", getPackageName());
                                     } else {
                                         country_location = "Smart Location";
                                     }
@@ -582,7 +607,23 @@ public class HomeActivity extends UIActivity implements VpnStateListener, Traffi
                         public void success(@NonNull SessionInfo sessionInfo) {
                             ServerIPaddress = sessionInfo.getCredentials().getServers().get(0).getAddress();
                             binding.fastestIpAdsress.setText(ServerIPaddress);
-                            callback.success(sessionInfo.getCredentials().getFirstServerIp());
+
+                            // Try to get country from server info
+                            String serverCountry = selectedCountry;
+                            try {
+                                if (sessionInfo.getCredentials() != null &&
+                                    sessionInfo.getCredentials().getServers() != null &&
+                                    !sessionInfo.getCredentials().getServers().isEmpty()) {
+                                    String country = sessionInfo.getCredentials().getServers().get(0).getCountry();
+                                    if (country != null && !country.isEmpty()) {
+                                        serverCountry = country;
+                                        SeclectedCountry = country;
+                                    }
+                                }
+                            } catch (Exception e) {
+                                Log.d(TAG, "Could not get country from server: " + e.getMessage());
+                            }
+                            callback.success(serverCountry);
                         }
 
                         @Override
@@ -749,21 +790,28 @@ public class HomeActivity extends UIActivity implements VpnStateListener, Traffi
             @Override
             public void success(@NonNull final String currentServer) {
                 runOnUiThread(() -> {
-                    binding.flagImageview.setImageDrawable(getResources().getDrawable(R.drawable.default_flag));
-                    binding.countryName.setText(R.string.smart_location);
-                    if (!currentServer.equals("") && SeclectedCountry != null) {
+                    if (!currentServer.equals("") && SeclectedCountry != null && !SeclectedCountry.isEmpty()) {
                         Locale locale = new Locale("", SeclectedCountry);
                         Resources resources = getResources();
-                        String sb = "drawable/" + currentServer.toLowerCase();
+                        String sb = "drawable/" + SeclectedCountry.toLowerCase();
                         country_location = locale.getDisplayCountry();
                         flag_image = resources.getIdentifier(sb, "drawable", getPackageName());
-                        binding.flagImageview.setImageResource(resources.getIdentifier(sb, "drawable", getPackageName()));
-                        binding.countryName.setText(locale.getCountry());
+
+                        // Set flag if resource exists, otherwise use default
+                        if (flag_image != 0) {
+                            binding.flagImageview.setImageResource(flag_image);
+                        } else {
+                            binding.flagImageview.setImageDrawable(getResources().getDrawable(R.drawable.default_flag));
+                        }
+
+                        // Set country display name
+                        binding.countryName.setText(country_location);
                         createNotification(country_location);
-                        Log.d(TAG, "currentServer\t" + currentServer + "\tsetServerData :       country name : " + locale.getDisplayCountry() + " , flag : " + resources.getIdentifier(sb, "drawable", getPackageName()));
+                        Log.d(TAG, "currentServer\t" + currentServer + "\tsetServerData:       country name: " + country_location + " , code: " + SeclectedCountry + " , flag: " + flag_image);
                     } else {
                         binding.flagImageview.setImageDrawable(getResources().getDrawable(R.drawable.default_flag));
                         binding.countryName.setText(R.string.smart_location);
+                        country_location = getString(R.string.smart_location);
                     }
                 });
             }
@@ -772,6 +820,7 @@ public class HomeActivity extends UIActivity implements VpnStateListener, Traffi
             public void failure(@NonNull VpnException e) {
                 binding.flagImageview.setImageDrawable(getResources().getDrawable(R.drawable.default_flag));
                 binding.countryName.setText(R.string.smart_location);
+                country_location = getString(R.string.smart_location);
             }
         });
     }
@@ -866,6 +915,7 @@ public class HomeActivity extends UIActivity implements VpnStateListener, Traffi
 //                .baseUrl(prefs.getString(BuildConfig.STORED_HOST_URL_KEY, sessionManager.getStringValue(Const.BASE_HOST)))
 //                .carrierId(prefs.getString(BuildConfig.STORED_CARRIER_ID_KEY, sessionManager.getStringValue(Const.BASE_CARRIER_ID)))
                 .build();
+
         List<TransportConfig> transportConfigList = new ArrayList<>();
         transportConfigList.add(HydraTransportConfig.create());
         transportConfigList.add(OpenVpnTransportConfig.tcp());
