@@ -17,10 +17,14 @@
 
     <string name="first_boarding_title">Seguro e Protegido</string>
     <string name="second_boarding_title">Melhor Servidor</string>
-    <string name="third_boarding_title">Teste Grátis de 7 Dias</string>
+    <string name="third_boarding_title">Aplicativo VPN Confiável</string>
     <string name="first_boarding_description">Sempre estivemos comprometidos em proteger sua privacidade e seus dados.</string>
     <string name="second_boarding_description">Temos o melhor servidor ao redor do mundo com conexão de super alta velocidade.</string>
-    <string name="third_boarding_description">Apenas $9.99 cobrado mensalmente após o teste gratuito. Cobrança recorrente, cancele a qualquer momento.</string>
+    <string name="third_boarding_description">Trackless VPN é um aplicativo VPN fácil de usar para Android, confiado por muitos usuários em todo o mundo.</string>
+    <string name="btn_allow_vpn">Permitir VPN</string>
+    <string name="btn_exit">Sair</string>
+    <string name="btn_continue">Continuar</string>
+    <string name="btn_skip">Pular</string>
     <string name="hello_blank_fragment">Olá fragmento em branco</string>
     <string name="disconnect">Desconectar</string>
     <string name="tap_to_connect">Toque para Conectar</string>

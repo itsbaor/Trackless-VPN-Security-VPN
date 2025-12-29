@@ -26,10 +26,14 @@
 
     <string name="first_boarding_title">Safe and Secured</string>
     <string name="second_boarding_title">Best Server</string>
-    <string name="third_boarding_title">7 Days Free Trial</string>
+    <string name="third_boarding_title">Trusted VPN App</string>
     <string name="first_boarding_description">We always been committed to protecting your privacy and your data.</string>
     <string name="second_boarding_description">We have best server around the world with super high speed connection.</string>
-    <string name="third_boarding_description">Only $9.99 billed monthly after free trial. Recurring billing, cancel anytime.</string>
+    <string name="third_boarding_description">Trackless VPN is easy-to-use VPN app for Android, trusted by many of users worldwide.</string>
+    <string name="btn_allow_vpn">Allow VPN</string>
+    <string name="btn_exit">Exit</string>
+    <string name="btn_continue">Continue</string>
+    <string name="btn_skip">Skip</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="disconnect">Disconnect</string>

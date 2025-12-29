@@ -66,8 +66,8 @@ public class LocationRecyclerAdapter extends RecyclerView.Adapter<LocationRecycl
             String sb = "drawable/" + data.getCountry().toLowerCase();
             imageView.setImageResource(resources.getIdentifier(sb, null, context.getPackageName()));
 
-            // Get country name in app-selected language
-            String countryName = countryLocale.getDisplayCountry(appLocale);
+            // Get country name in English (always)
+            String countryName = countryLocale.getDisplayCountry(Locale.ENGLISH);
             holder.binding.countryTitle.setText(countryName);
             Log.d("ADAPTER_LOCATION", "onBindViewHolder:    " + countryName);
 //            holder.limit.setVisibility(View.VISIBLE);

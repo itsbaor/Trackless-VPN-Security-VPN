@@ -17,10 +17,14 @@
 
     <string name="first_boarding_title">안전하고 보안됨</string>
     <string name="second_boarding_title">최고의 서버</string>
-    <string name="third_boarding_title">7일 무료 체험</string>
+    <string name="third_boarding_title">신뢰할 수 있는 VPN 앱</string>
     <string name="first_boarding_description">우리는 항상 귀하의 개인정보와 데이터를 보호하기 위해 최선을 다하고 있습니다.</string>
     <string name="second_boarding_description">전 세계에서 초고속 연결을 제공하는 최고의 서버를 보유하고 있습니다.</string>
-    <string name="third_boarding_description">무료 체험 후 월 $9.99만 청구됩니다. 정기 결제, 언제든지 취소 가능.</string>
+    <string name="third_boarding_description">Trackless VPN은 전 세계 많은 사용자들이 신뢰하는 Android용 사용하기 쉬운 VPN 앱입니다.</string>
+    <string name="btn_allow_vpn">VPN 허용</string>
+    <string name="btn_exit">종료</string>
+    <string name="btn_continue">계속</string>
+    <string name="btn_skip">건너뛰기</string>
     <string name="hello_blank_fragment">안녕하세요 빈 프래그먼트</string>
     <string name="disconnect">연결 해제</string>
     <string name="tap_to_connect">탭하여 연결</string>

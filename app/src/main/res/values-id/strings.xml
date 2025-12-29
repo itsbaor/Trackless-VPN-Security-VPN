@@ -17,10 +17,14 @@
 
     <string name="first_boarding_title">Aman dan Terlindungi</string>
     <string name="second_boarding_title">Server Terbaik</string>
-    <string name="third_boarding_title">Uji Coba Gratis 7 Hari</string>
+    <string name="third_boarding_title">Aplikasi VPN Terpercaya</string>
     <string name="first_boarding_description">Kami selalu berkomitmen untuk melindungi privasi dan data Anda.</string>
     <string name="second_boarding_description">Kami memiliki server terbaik di seluruh dunia dengan koneksi kecepatan super tinggi.</string>
-    <string name="third_boarding_description">Hanya $9.99 ditagih bulanan setelah uji coba gratis. Penagihan berulang, batalkan kapan saja.</string>
+    <string name="third_boarding_description">Trackless VPN adalah aplikasi VPN yang mudah digunakan untuk Android, dipercaya oleh banyak pengguna di seluruh dunia.</string>
+    <string name="btn_allow_vpn">Izinkan VPN</string>
+    <string name="btn_exit">Keluar</string>
+    <string name="btn_continue">Lanjutkan</string>
+    <string name="btn_skip">Lewati</string>
     <string name="hello_blank_fragment">Halo fragmen kosong</string>
     <string name="disconnect">Putuskan</string>
     <string name="tap_to_connect">Ketuk untuk Terhubung</string>

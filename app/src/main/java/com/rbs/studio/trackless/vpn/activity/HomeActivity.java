@@ -392,11 +392,9 @@ public class HomeActivity extends UIActivity implements VpnStateListener, Traffi
                                     if (countryCode != null && !countryCode.equals("")) {
                                         SeclectedCountry = countryCode;
 
-                                        // Get app-selected language from Hawk
-                                        String appLanguage = Hawk.get("language_code", "en");
-                                        Locale appLocale = new Locale(appLanguage);
+                                        // Get country name in English (always)
                                         Locale countryLocale = new Locale("", countryCode);
-                                        country_location = countryLocale.getDisplayCountry(appLocale);
+                                        country_location = countryLocale.getDisplayCountry(Locale.ENGLISH);
 
                                         // Set flag
                                         Resources resources = getResources();
@@ -796,11 +794,9 @@ public class HomeActivity extends UIActivity implements VpnStateListener, Traffi
             public void success(@NonNull final String currentServer) {
                 runOnUiThread(() -> {
                     if (!currentServer.equals("") && SeclectedCountry != null && !SeclectedCountry.isEmpty()) {
-                        // Get app-selected language from Hawk
-                        String appLanguage = Hawk.get("language_code", "en");
-                        Locale appLocale = new Locale(appLanguage);
+                        // Get country name in English (always)
                         Locale countryLocale = new Locale("", SeclectedCountry);
-                        country_location = countryLocale.getDisplayCountry(appLocale);
+                        country_location = countryLocale.getDisplayCountry(Locale.ENGLISH);
 
                         Resources resources = getResources();
                         String sb = "drawable/" + SeclectedCountry.toLowerCase();

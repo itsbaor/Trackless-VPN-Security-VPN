@@ -29,9 +29,27 @@ public class FirstBoardingActivity extends BaseActivity {
         sessionManager = new SessionManager(this);
 
         final List<ScreenItem> mList = new ArrayList<>();
-        mList.add(new ScreenItem("Safe and Secured", "We always been committed to protecting your privacy and your data.", R.drawable.first_boarding_logo, "Allow VPN", "Exit"));
-        mList.add(new ScreenItem("Best Server", "We have best server around the world with super high speed connection.", R.drawable.second_boarding_logo, "Continue", "Skip"));
-        mList.add(new ScreenItem("Trusted VPN App", "Trackless VPN is easy-to-use VPN app for Android, trusted by many of users worldwide. ", R.drawable.third_boarding_logo, "Contimue", "Skip "));
+        mList.add(new ScreenItem(
+                getString(R.string.first_boarding_title),
+                getString(R.string.first_boarding_description),
+                R.drawable.first_boarding_logo,
+                getString(R.string.btn_allow_vpn),
+                getString(R.string.btn_exit)
+        ));
+        mList.add(new ScreenItem(
+                getString(R.string.second_boarding_title),
+                getString(R.string.second_boarding_description),
+                R.drawable.second_boarding_logo,
+                getString(R.string.btn_continue),
+                getString(R.string.btn_skip)
+        ));
+        mList.add(new ScreenItem(
+                getString(R.string.third_boarding_title),
+                getString(R.string.third_boarding_description),
+                R.drawable.third_boarding_logo,
+                getString(R.string.btn_continue),
+                getString(R.string.btn_skip)
+        ));
         introViewPagerAdapter = new IntroViewPagerAdapter(this, mList);
         binding.tablayout.setupWithViewPager(binding.viewpager, true);
         binding.viewpager.setAdapter(introViewPagerAdapter);

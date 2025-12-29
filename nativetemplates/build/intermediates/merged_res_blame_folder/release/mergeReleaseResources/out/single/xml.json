@@ -1,0 +1,10 @@
+[
+    {
+        "merged": "com.google.android.ads.nativetemplates-release-28:/xml/image_share_filepaths.xml",
+        "source": "com.google.android.ads.nativetemplates-browser-1.4.0-16:/xml/image_share_filepaths.xml"
+    },
+    {
+        "merged": "com.google.android.ads.nativetemplates-release-28:/xml/gma_ad_services_config.xml",
+        "source": "com.google.android.ads.nativetemplates-jetified-play-services-ads-lite-22.5.0-20:/xml/gma_ad_services_config.xml"
+    }
+]

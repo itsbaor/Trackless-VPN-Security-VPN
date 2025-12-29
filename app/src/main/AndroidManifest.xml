@@ -17,7 +17,6 @@
     <application
         android:name=".MainApp"
         android:allowBackup="true"
-        android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
         android:hardwareAccelerated="true"
         android:icon="@mipmap/ic_launcher_round"
@@ -30,7 +29,7 @@
         android:theme="@style/Theme.VPNite"
         android:usesCleartextTraffic="true"
         tools:ignore="GoogleAppIndexingWarning"
-        tools:targetApi="33"
+        tools:targetApi="35"
         tools:replace="android:allowBackup,android:supportsRtl">
         <activity
             android:name=".activity.ConnectedStatisticActivity"
@@ -86,16 +85,17 @@
             </intent-filter>
         </activity>
 
-        <service
-            android:name="unified.vpn.sdk.HydraProxyService"
-
-            android:permission="android.permission.BIND_VPN_SERVICE" />
 
         <service android:name=".service.TimerService" />
 
         <meta-data
             android:name="com.google.android.gms.ads.APPLICATION_ID"
             android:value="@string/app_id"/>
+
+        <property
+            android:name="android.adservices.AD_SERVICES_CONFIG"
+            android:resource="@xml/gma_ad_services_config"
+            tools:replace="android:resource"/>
 
     </application>
 

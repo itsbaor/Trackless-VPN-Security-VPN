@@ -17,10 +17,14 @@
 
     <string name="first_boarding_title">सुरक्षित और संरक्षित</string>
     <string name="second_boarding_title">सर्वश्रेष्ठ सर्वर</string>
-    <string name="third_boarding_title">7 दिन का मुफ्त परीक्षण</string>
+    <string name="third_boarding_title">विश्वसनीय VPN ऐप</string>
     <string name="first_boarding_description">हम हमेशा आपकी गोपनीयता और आपके डेटा की सुरक्षा के लिए प्रतिबद्ध रहे हैं।</string>
     <string name="second_boarding_description">हमारे पास सुपर हाई स्पीड कनेक्शन के साथ दुनिया भर में सर्वश्रेष्ठ सर्वर हैं।</string>
-    <string name="third_boarding_description">मुफ्त परीक्षण के बाद केवल $9.99 मासिक बिल किया जाएगा। आवर्ती बिलिंग, कभी भी रद्द करें।</string>
+    <string name="third_boarding_description">Trackless VPN एंड्रॉइड के लिए उपयोग में आसान VPN ऐप है, जिस पर दुनिया भर के कई उपयोगकर्ता भरोसा करते हैं।</string>
+    <string name="btn_allow_vpn">VPN की अनुमति दें</string>
+    <string name="btn_exit">बाहर निकलें</string>
+    <string name="btn_continue">जारी रखें</string>
+    <string name="btn_skip">छोड़ें</string>
     <string name="hello_blank_fragment">हैलो खाली फ्रैगमेंट</string>
     <string name="disconnect">डिस्कनेक्ट</string>
     <string name="tap_to_connect">कनेक्ट करने के लिए टैप करें</string>
